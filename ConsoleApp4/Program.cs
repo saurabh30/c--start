@@ -49,7 +49,7 @@ namespace ConsoleApp4
 
         public void view() {
             foreach (var employee in list) {
-                Console.WriteLine(employee.eID+" "+employee.name+" ");
+                Console.WriteLine("{0} {1}",employee.eID,employee.name);
             }  
         }
 
@@ -58,7 +58,7 @@ namespace ConsoleApp4
             {
                 if (employee.eID == id) {
                     list.Remove(employee);
-                    Console.WriteLine(employee.name + " deleted" );
+                    Console.WriteLine("{0} deleted",employee.name);
                     break;
                 }
                 
@@ -71,8 +71,9 @@ namespace ConsoleApp4
             {
                 if (employee.eID == id)
                 {
-                    employee.name = name; 
-                    Console.WriteLine(employee.name + " updated");
+                    
+                    Console.WriteLine("{0} updated",employee.name);
+                    employee.name = name;
                     break;
                 }
 
