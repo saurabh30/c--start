@@ -18,21 +18,42 @@ namespace ConsoleApp4
 
     }
 
-    static class EmployeeList
+    static class EmployeeData
     {
-        static List<Employee> list = new List<Employee>();
+        static List<Employee> list1 = new List<Employee>();
+        public static List<Employee> Get() {
+            list1.Add(new Employee(1, "saurabh1"));
+            list1.Add(new Employee(2, "saurabh2"));
+            list1.Add(new Employee(3, "saurabh3"));
+            list1.Add(new Employee(4, "saurabh4"));
+            list1.Add(new Employee(5, "saurab5"));
+            list1.Add(new Employee(6, "saurabh6"));
+            list1.Add(new Employee(7, "saurabh7"));
+            list1.Add(new Employee(8, "saurabh8"));
+            list1.Add(new Employee(9, "saurabh9"));
+            list1.Add(new Employee(10, "saurabh0"));
+            return list1;
+        }
+        
+     }
 
-        public static void add(Employee e) {
+     class EmployeeList
+    {
+        List<Employee> list;
+        public EmployeeList() {
+            list = EmployeeData.Get();
+        }
+        public void add(Employee e) {
             list.Add(e);
         }
 
-        public static void view() {
+        public void view() {
             foreach (var employee in list) {
-                Console.WriteLine(employee.eID+" "+employee.name);
+                Console.WriteLine(employee.eID+" "+employee.name+" ");
             }  
         }
 
-        public static void delete(int id) {
+        public  void delete(int id) {
             foreach (var employee in list)
             {
                 if (employee.eID == id) {
@@ -44,7 +65,7 @@ namespace ConsoleApp4
             }
         }
 
-        public static void edit(int id,String name)
+        public  void edit(int id,String name)
         {
             foreach (var employee in list)
             {
@@ -63,13 +84,12 @@ namespace ConsoleApp4
     {
         static void Main(string[] args)
         {
-            EmployeeList.add(new Employee(319403,"saurabh"));
-            EmployeeList.add(new Employee(319406, "urabh"));
-            EmployeeList.view();
-            EmployeeList.delete(319403);
-            EmployeeList.view();
-            EmployeeList.edit(319406,"saurabh");
-            EmployeeList.view();
+            EmployeeList obj = new EmployeeList() ;
+            obj.view();
+            obj.delete(1);
+            obj.view();
+            obj.edit(6,"saurabh");
+            obj.view();
         }
     }
 }
