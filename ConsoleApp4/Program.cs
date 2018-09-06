@@ -37,7 +37,7 @@ namespace ConsoleApp4
 
     static class EmployeeData
     {
-        static internal List<Employee> list1 = new List<Employee>()
+        static internal List<Employee> list = new List<Employee>()
         {
                 new Employee(){  EId=1, Name = "saurabh1", DOJ = "25/07/2018" },
                 new Employee(){  EId=2, Name = "saurabh2", DOJ = "25/07/2018" },
@@ -54,29 +54,24 @@ namespace ConsoleApp4
 
      class EmployeeList
     {
-        List<Employee> list;
-        public EmployeeList() {
-            list = EmployeeData.list1;
-        }
+        
         public void Add(Employee e) {
-            list.Add(e);
+            EmployeeData.list.Add(e);
         }
 
         public void View() {
-            foreach (var employee in list) {
+            foreach (var employee in EmployeeData.list) {
                 Console.WriteLine($"{employee.EId} {employee.Name} {employee.DOJ}");
             }  
         }
 
         public  String Delete(int id) {
-            foreach (var employee in list)
+            foreach (var employee in EmployeeData.list)
             {
                 if (employee.EId == id) {
-                    list.Remove(employee);
+                    EmployeeData.list.Remove(employee);
                     return ($"{employee.Name} deleted");
-                  
-                }
-                
+                 }
             }
 
             return "Invalid ID";
@@ -84,7 +79,7 @@ namespace ConsoleApp4
 
         public  void Edit(int id,String name)
         {
-            foreach (var employee in list)
+            foreach (var employee in EmployeeData.list)
             {
                 if (employee.EId == id)
                 {
