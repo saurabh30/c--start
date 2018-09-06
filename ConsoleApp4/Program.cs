@@ -9,29 +9,14 @@ namespace ConsoleApp4
 {
     class Employee
     {
-        DateTime date;
+       
         public int EId
         { get; set; }
         public String Name
         { get; set; }
 
-        public String DOJ
-        {
-            get => date.ToString("dd/MM/yyyy");
-            set
-            {
-                try
-                {
-                    date = DateTime.ParseExact(value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-            }
-
-        } 
+        public DateTime DOJ
+        { get; set; } 
 
     }
 
@@ -39,16 +24,16 @@ namespace ConsoleApp4
     {
         static internal List<Employee> list = new List<Employee>()
         {
-                new Employee(){  EId=1, Name = "saurabh1", DOJ = "25/07/2018" },
-                new Employee(){  EId=2, Name = "saurabh2", DOJ = "25/07/2018" },
-                new Employee(){  EId=3, Name = "saurabh3", DOJ = "25/07/2018" },
-                new Employee(){  EId=4, Name = "saurabh4", DOJ = "25/07/2018" },
-                new Employee(){  EId=5, Name = "saurabh5", DOJ = "25/07/2018" },
-                new Employee(){  EId=6, Name = "saurabh6", DOJ = "25/07/2018" },
-                new Employee(){  EId=7, Name = "saurabh7", DOJ = "25/07/2018" },
-                new Employee(){  EId=8, Name = "saurabh8", DOJ = "25/07/2018" },
-                new Employee(){  EId=9, Name = "saurabh9", DOJ = "25/07/2018" },
-                new Employee(){  EId=10, Name = "saurabh10", DOJ = "25/07/2018" },
+                new Employee(){  EId=1, Name = "saurabh1", DOJ = new DateTime(2018,07,25) },
+                new Employee(){  EId=2, Name = "saurabh2", DOJ = new DateTime(2018,07,26) },
+                new Employee(){  EId=3, Name = "saurabh3", DOJ = new DateTime(2018,07,25)},
+                new Employee(){  EId=4, Name = "saurabh4", DOJ = new DateTime(2018,07,25) },
+                new Employee(){  EId=5, Name = "saurabh5", DOJ = new DateTime(2018,07,25) },
+                new Employee(){  EId=6, Name = "saurabh6", DOJ = new DateTime(2018,07,25) },
+                new Employee(){  EId=7, Name = "saurabh7", DOJ = new DateTime(2018,07,25) },
+                new Employee(){  EId=8, Name = "saurabh8", DOJ = new DateTime(2018,07,25) },
+                new Employee(){  EId=9, Name = "saurabh9", DOJ = new DateTime(2018,07,25) },
+                new Employee(){  EId=10, Name = "saurabh10", DOJ = new DateTime(2018,07,25) },
         };
      }
 
@@ -61,7 +46,7 @@ namespace ConsoleApp4
 
         public void View() {
             foreach (var employee in EmployeeData.list) {
-                Console.WriteLine($"{employee.EId} {employee.Name} {employee.DOJ}");
+                Console.WriteLine($"{employee.EId} {employee.Name} {employee.DOJ.ToString("dd/MM/yyyy")}");
             }  
         }
 
@@ -86,7 +71,7 @@ namespace ConsoleApp4
                     
                     Console.WriteLine($"{employee.Name} updated");
                     employee.Name = name;
-                    break;
+                    return;
                 }
 
             }
@@ -135,11 +120,12 @@ namespace ConsoleApp4
                         String name = Console.ReadLine();
                         Console.WriteLine("Enter the employee date of joining in dd/mm/yyyy");
                         String date = Console.ReadLine();
+                        DateTime iDate = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                         obj.Add(new Employee()
                         {
                             EId = eID,
                             Name = name,
-                            DOJ = date
+                            DOJ = iDate
                         });
                         Console.WriteLine("Employee added");
                         Console.WriteLine("Press enter to exit");
