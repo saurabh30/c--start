@@ -8,30 +8,30 @@ namespace ConsoleApp4
 {
     class Employee
     {
-        public int eID;
-        public String name;
-
-        public Employee(int eID, String name) {
-            this.eID = eID;
-            this.name = name;
-        }
+        public int EId
+        { get; set; }
+        public String Name
+        { get; set; }
+       
 
     }
 
     static class EmployeeData
     {
-        static List<Employee> list1 = new List<Employee>();
+        static List<Employee> list1 = new List<Employee>()
+        {
+                new Employee(){  EId=1, Name = "saurabh1" },
+                new Employee(){  EId=2, Name = "saurabh2" },
+                new Employee(){  EId=3, Name = "saurabh3" },
+                new Employee(){  EId=4, Name = "saurabh4" },
+                new Employee(){  EId=5, Name = "saurabh5" },
+                new Employee(){  EId=6, Name = "saurabh6" },
+                new Employee(){  EId=7, Name = "saurabh7" },
+                new Employee(){  EId=8, Name = "saurabh8" },
+                new Employee(){  EId=9, Name = "saurabh9" },
+                new Employee(){  EId=10, Name = "saurabh10" },
+        };
         public static List<Employee> Get() {
-            list1.Add(new Employee(1, "saurabh1"));
-            list1.Add(new Employee(2, "saurabh2"));
-            list1.Add(new Employee(3, "saurabh3"));
-            list1.Add(new Employee(4, "saurabh4"));
-            list1.Add(new Employee(5, "saurab5"));
-            list1.Add(new Employee(6, "saurabh6"));
-            list1.Add(new Employee(7, "saurabh7"));
-            list1.Add(new Employee(8, "saurabh8"));
-            list1.Add(new Employee(9, "saurabh9"));
-            list1.Add(new Employee(10, "saurabh0"));
             return list1;
         }
         
@@ -49,16 +49,16 @@ namespace ConsoleApp4
 
         public void view() {
             foreach (var employee in list) {
-                Console.WriteLine("{0} {1}",employee.eID,employee.name);
+                Console.WriteLine($"{employee.EId} {employee.Name}");
             }  
         }
 
         public  void delete(int id) {
             foreach (var employee in list)
             {
-                if (employee.eID == id) {
+                if (employee.EId == id) {
                     list.Remove(employee);
-                    Console.WriteLine("{0} deleted",employee.name);
+                    Console.WriteLine($"{employee.Name} deleted");
                     break;
                 }
                 
@@ -69,11 +69,11 @@ namespace ConsoleApp4
         {
             foreach (var employee in list)
             {
-                if (employee.eID == id)
+                if (employee.EId == id)
                 {
                     
-                    Console.WriteLine("{0} updated",employee.name);
-                    employee.name = name;
+                    Console.WriteLine($"{employee.Name} updated");
+                    employee.Name = name;
                     break;
                 }
 
