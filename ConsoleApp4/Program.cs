@@ -12,13 +12,11 @@ namespace ConsoleApp4
         { get; set; }
         public String Name
         { get; set; }
-       
-
     }
 
     static class EmployeeData
     {
-        static List<Employee> list1 = new List<Employee>()
+        static internal List<Employee> list1 = new List<Employee>()
         {
                 new Employee(){  EId=1, Name = "saurabh1" },
                 new Employee(){  EId=2, Name = "saurabh2" },
@@ -31,29 +29,25 @@ namespace ConsoleApp4
                 new Employee(){  EId=9, Name = "saurabh9" },
                 new Employee(){  EId=10, Name = "saurabh10" },
         };
-        public static List<Employee> Get() {
-            return list1;
-        }
-        
      }
 
      class EmployeeList
     {
         List<Employee> list;
         public EmployeeList() {
-            list = EmployeeData.Get();
+            list = EmployeeData.list1;
         }
-        public void add(Employee e) {
+        public void Add(Employee e) {
             list.Add(e);
         }
 
-        public void view() {
+        public void View() {
             foreach (var employee in list) {
                 Console.WriteLine($"{employee.EId} {employee.Name}");
             }  
         }
 
-        public  void delete(int id) {
+        public  void Delete(int id) {
             foreach (var employee in list)
             {
                 if (employee.EId == id) {
@@ -65,7 +59,7 @@ namespace ConsoleApp4
             }
         }
 
-        public  void edit(int id,String name)
+        public  void Edit(int id,String name)
         {
             foreach (var employee in list)
             {
@@ -86,11 +80,11 @@ namespace ConsoleApp4
         static void Main(string[] args)
         {
             EmployeeList obj = new EmployeeList() ;
-            obj.view();
-            obj.delete(1);
-            obj.view();
-            obj.edit(6,"saurabh");
-            obj.view();
+            obj.View();
+            obj.Delete(1);
+            obj.View();
+            obj.Edit(6,"saurabh");
+            obj.View();
         }
     }
 }
