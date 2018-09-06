@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,26 +9,46 @@ namespace ConsoleApp4
 {
     class Employee
     {
+        DateTime date;
         public int EId
         { get; set; }
         public String Name
         { get; set; }
+
+        public String DOJ
+        {
+            get => date.ToString("dd/MM/yyyy");
+            set
+            {
+                try
+                {
+                    date = DateTime.ParseExact(value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+
+        } 
+
     }
 
     static class EmployeeData
     {
         static internal List<Employee> list1 = new List<Employee>()
         {
-                new Employee(){  EId=1, Name = "saurabh1" },
-                new Employee(){  EId=2, Name = "saurabh2" },
-                new Employee(){  EId=3, Name = "saurabh3" },
-                new Employee(){  EId=4, Name = "saurabh4" },
-                new Employee(){  EId=5, Name = "saurabh5" },
-                new Employee(){  EId=6, Name = "saurabh6" },
-                new Employee(){  EId=7, Name = "saurabh7" },
-                new Employee(){  EId=8, Name = "saurabh8" },
-                new Employee(){  EId=9, Name = "saurabh9" },
-                new Employee(){  EId=10, Name = "saurabh10" },
+                new Employee(){  EId=1, Name = "saurabh1", DOJ = "25/07/2018" },
+                new Employee(){  EId=2, Name = "saurabh2", DOJ = "25/07/2018" },
+                new Employee(){  EId=3, Name = "saurabh3", DOJ = "25/07/2018" },
+                new Employee(){  EId=4, Name = "saurabh4", DOJ = "25/07/2018" },
+                new Employee(){  EId=5, Name = "saurabh5", DOJ = "25/07/2018" },
+                new Employee(){  EId=6, Name = "saurabh6", DOJ = "25/07/2018" },
+                new Employee(){  EId=7, Name = "saurabh7", DOJ = "25/07/2018" },
+                new Employee(){  EId=8, Name = "saurabh8", DOJ = "25/07/2018" },
+                new Employee(){  EId=9, Name = "saurabh9", DOJ = "25/07/2018" },
+                new Employee(){  EId=10, Name = "saurabh10", DOJ = "25/07/2018" },
         };
      }
 
@@ -43,7 +64,7 @@ namespace ConsoleApp4
 
         public void View() {
             foreach (var employee in list) {
-                Console.WriteLine($"{employee.EId} {employee.Name}");
+                Console.WriteLine($"{employee.EId} {employee.Name} {employee.DOJ}");
             }  
         }
 
