@@ -68,16 +68,18 @@ namespace ConsoleApp4
             }  
         }
 
-        public  void Delete(int id) {
+        public  String Delete(int id) {
             foreach (var employee in list)
             {
                 if (employee.EId == id) {
                     list.Remove(employee);
-                    Console.WriteLine($"{employee.Name} deleted");
-                    break;
+                    return ($"{employee.Name} deleted");
+                  
                 }
                 
             }
+
+            return "Invalid ID";
         }
 
         public  void Edit(int id,String name)
@@ -93,6 +95,8 @@ namespace ConsoleApp4
                 }
 
             }
+
+            Console.WriteLine("Employee Not found");
         }
 
     }
@@ -101,11 +105,103 @@ namespace ConsoleApp4
         static void Main(string[] args)
         {
             EmployeeList obj = new EmployeeList() ;
-            obj.View();
-            obj.Delete(1);
-            obj.View();
-            obj.Edit(6,"saurabh");
-            obj.View();
+            while (true) {
+                Console.WriteLine("Enter 1 to view employee list.");
+                Console.WriteLine("Enter 2 to add employee list.");
+                Console.WriteLine("Enter 3 to edit employee list.");
+                Console.WriteLine("Enter 4 to delete employee list.");
+                string choice = Console.ReadLine();
+                Console.Clear();
+                switch (choice)
+                {
+                    case "1":
+                        obj.View();
+                        Console.WriteLine("Press enter to exit");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case "2":
+                        Console.WriteLine("Enter the employee ID");
+                        String s = Console.ReadLine();
+                        int eID;
+                        try
+                        {
+                            eID = Convert.ToInt32(s);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Invalid ID");
+                            Console.WriteLine("Press enter to exit");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                        }
+                        Console.WriteLine("Enter the employee name");
+                        String name = Console.ReadLine();
+                        Console.WriteLine("Enter the employee date of joining in dd/mm/yyyy");
+                        String date = Console.ReadLine();
+                        obj.Add(new Employee()
+                        {
+                            EId = eID,
+                            Name = name,
+                            DOJ = date
+                        });
+                        Console.WriteLine("Employee added");
+                        Console.WriteLine("Press enter to exit");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case "3":
+                        Console.WriteLine("Enter the employee ID");
+                        s = Console.ReadLine();
+                        try
+                        {
+                            eID = Convert.ToInt32(s);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Invalid ID");
+                            Console.WriteLine("Press enter to exit");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                        }
+                        Console.WriteLine("Enter new name");
+                        name = Console.ReadLine();
+                        obj.Edit(eID,name);
+                        Console.WriteLine("Press enter to exit");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case "4":
+                        Console.WriteLine("Enter the employee ID");
+                         s = Console.ReadLine();
+                        try
+                        {
+                            eID = Convert.ToInt32(s);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Invalid ID");
+                            Console.WriteLine("Press enter to exit");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                        }
+                        String msg = obj.Delete(eID);
+                        Console.WriteLine(msg);
+                        Console.WriteLine("Press enter to exit");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid choice.Press enter to exit.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                }
+            }
         }
     }
 }
